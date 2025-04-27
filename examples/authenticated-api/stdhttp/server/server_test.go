@@ -4,10 +4,10 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/authenticated-api/stdhttp/api"
 	"github.com/oapi-codegen/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/vulados/oapi-codegen/v2/examples/authenticated-api/stdhttp/api"
 )
 
 func TestAPI(t *testing.T) {

@@ -15,9 +15,9 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	clientAPI "github.com/oapi-codegen/oapi-codegen/v2/internal/test/strict-server/client"
 	"github.com/oapi-codegen/runtime"
 	"github.com/oapi-codegen/testutil"
+	clientAPI "github.com/vulados/oapi-codegen/v2/internal/test/strict-server/client"
 )
 
 func TestStdHTTPServer(t *testing.T) {

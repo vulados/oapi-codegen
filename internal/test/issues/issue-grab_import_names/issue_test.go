@@ -4,8 +4,8 @@ import (
 	"testing"
 
 	"github.com/getkin/kin-openapi/openapi3"
-	"github.com/oapi-codegen/oapi-codegen/v2/pkg/codegen"
 	"github.com/stretchr/testify/require"
+	"github.com/vulados/oapi-codegen/v2/pkg/codegen"
 )
 
 func TestLineComments(t *testing.T) {

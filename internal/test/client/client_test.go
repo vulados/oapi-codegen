@@ -3,8 +3,8 @@ package client
 import (
 	"testing"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/pkg/securityprovider"
 	"github.com/stretchr/testify/assert"
+	"github.com/vulados/oapi-codegen/v2/pkg/securityprovider"
 )
 
 var (

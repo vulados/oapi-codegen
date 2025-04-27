@@ -21,7 +21,7 @@ With `oapi-codegen`, there are a few [Key Design Decisions](#key-design-decision
 As announced in [May 2024](https://github.com/oapi-codegen/oapi-codegen/discussions/1605),
 we have moved the project from the deepmap organization to our own organization, and you will need to update your
 import paths to pull updates past this point. You need to do a recursive search/replace from
-`github.com/deepmap/oapi-codegen/v2` to `github.com/oapi-codegen/oapi-codegen/v2`.
+`github.com/deepmap/oapi-codegen/v2` to `github.com/vulados/oapi-codegen/v2`.
 
 > [!IMPORTANT]
 > `oapi-codegen` moved to its new home with the version tag `v2.3.0`.
@@ -37,7 +37,7 @@ If you are using `v2.3.0` or above, please install like so, using the new module
 
 ```sh
 # for the binary install
-go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
+go install github.com/vulados/oapi-codegen/v2/cmd/oapi-codegen@latest
 ```
 
 ## Install
@@ -49,7 +49,7 @@ It is recommended to follow [the `go tool` support available from Go 1.24+](http
 To do this, you run `go get -tool`:
 
 ```sh
-$ go get -tool github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
+$ go get -tool github.com/vulados/oapi-codegen/v2/cmd/oapi-codegen@latest
 # this will then modify your `go.mod`
 ```
 
@@ -72,20 +72,20 @@ This would give you a `tools/tools.go`:
 package main
 
 import (
-	_ "github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen"
+	_ "github.com/vulados/oapi-codegen/v2/cmd/oapi-codegen"
 )
 ```
 
 Then, each invocation of `oapi-codegen` would be used like so:
 
 ```go
-//go:generate go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml ../../api.yaml
+//go:generate go run github.com/vulados/oapi-codegen/v2/cmd/oapi-codegen --config=config.yaml ../../api.yaml
 ```
 
 Alternatively, you can install it as a binary with:
 
 ```sh
-$ go install github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@latest
+$ go install github.com/vulados/oapi-codegen/v2/cmd/oapi-codegen@latest
 $ oapi-codegen -version
 ```
 
@@ -111,9 +111,9 @@ To do so, you can run:
 
 ```sh
 # pin to the latest version on the default branch
-$ go get github.com/oapi-codegen/oapi-codegen/v2@main
+$ go get github.com/vulados/oapi-codegen/v2@main
 # alternatively, to a commit hash i.e. https://github.com/oapi-codegen/oapi-codegen/commit/71e916c59688a6379b5774dfe5904ec222b9a537
-$ go get github.com/oapi-codegen/oapi-codegen/v2@71e916c59688a6379b5774dfe5904ec222b9a537
+$ go get github.com/vulados/oapi-codegen/v2@71e916c59688a6379b5774dfe5904ec222b9a537
 ```
 
 This will then make a change such as:
@@ -124,15 +124,15 @@ index 44f29a4..436a780 100644
 --- go.mod
 +++ go.mod
 @@ -2,21 +2,20 @@
--require github.com/oapi-codegen/oapi-codegen/v2 v2.1.0
-+require github.com/oapi-codegen/oapi-codegen/v2 v2.1.1-0.20240331212514-80f0b978ef16
+-require github.com/vulados/oapi-codegen/v2 v2.1.0
++require github.com/vulados/oapi-codegen/v2 v2.1.1-0.20240331212514-80f0b978ef16
 ```
 
 ## Usage
 
 `oapi-codegen` is largely configured using a YAML configuration file, to simplify the number of flags that users need to remember, and to make reading the `go:generate` command less daunting.
 
-For full details of what is supported, it's worth checking out [the GoDoc for `codegen.Configuration`](https://pkg.go.dev/github.com/oapi-codegen/oapi-codegen/v2/pkg/codegen#Configuration).
+For full details of what is supported, it's worth checking out [the GoDoc for `codegen.Configuration`](https://pkg.go.dev/github.com/vulados/oapi-codegen/v2/pkg/codegen#Configuration).
 
 We also have [a JSON Schema](configuration-schema.json) that can be used by IDEs/editors with the Language Server Protocol (LSP) to perform intelligent suggestions, i.e.:
 
@@ -146,7 +146,7 @@ package: api
 
 Although we strive to retain backwards compatibility - as a project that's using a stable API per SemVer - there are sometimes opportunities we must take to fix a bug that could cause a breaking change for [people relying upon the behaviour](https://xkcd.com/1172/).
 
-In this case, we will expose a [compatibility option](https://pkg.go.dev/github.com/oapi-codegen/oapi-codegen/v2/pkg/codegen#CompatibilityOptions) to restore old behaviour.
+In this case, we will expose a [compatibility option](https://pkg.go.dev/github.com/vulados/oapi-codegen/v2/pkg/codegen#CompatibilityOptions) to restore old behaviour.
 
 ## Features
 
@@ -725,7 +725,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/stdhttp/api"
+	"github.com/vulados/oapi-codegen/v2/examples/minimal-server/stdhttp/api"
 )
 
 func main() {
@@ -862,7 +862,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/chi/api"
+	"github.com/vulados/oapi-codegen/v2/examples/minimal-server/chi/api"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -989,7 +989,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/gorillamux/api"
+	"github.com/vulados/oapi-codegen/v2/examples/minimal-server/gorillamux/api"
 	"github.com/gorilla/mux"
 )
 
@@ -1120,7 +1120,7 @@ Now we've got our implementation, we can then write the following code to wire i
 import (
 	"log"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/echo/api"
+	"github.com/vulados/oapi-codegen/v2/examples/minimal-server/echo/api"
 	"github.com/labstack/echo/v4"
 )
 
@@ -1237,7 +1237,7 @@ Now we've got our implementation, we can then write the following code to wire i
 import (
 	"log"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/fiber/api"
+	"github.com/vulados/oapi-codegen/v2/examples/minimal-server/fiber/api"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -1352,7 +1352,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/gin/api"
+	"github.com/vulados/oapi-codegen/v2/examples/minimal-server/gin/api"
 	"github.com/gin-gonic/gin"
 )
 
@@ -1476,7 +1476,7 @@ Now we've got our implementation, we can then write the following code to wire i
 import (
 	"log"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/minimal-server/iris/api"
+	"github.com/vulados/oapi-codegen/v2/examples/minimal-server/iris/api"
 	"github.com/kataras/iris/v12"
 )
 
@@ -1611,7 +1611,7 @@ And a `generate.go`:
 ```go
 package client
 
-//go:generate go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config cfg.yaml api.yaml
+//go:generate go run github.com/vulados/oapi-codegen/v2/cmd/oapi-codegen -config cfg.yaml api.yaml
 ```
 
 This would then generate:
@@ -1687,7 +1687,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/client"
+	"github.com/vulados/oapi-codegen/v2/examples/client"
 )
 
 func TestClient_canCall() {
@@ -1810,7 +1810,7 @@ And a `generate.go`:
 ```go
 package onlymodels
 
-//go:generate go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config cfg.yaml api.yaml
+//go:generate go run github.com/vulados/oapi-codegen/v2/cmd/oapi-codegen -config cfg.yaml api.yaml
 ```
 
 This would then generate:
@@ -1929,8 +1929,8 @@ So how do we get `oapi-codegen` to generate our code?
 To get `oapi-codegen`'s single-package support working, we need multiple calls to `oapi-codegen`, one call per OpenAPI spec file:
 
 ```sh
-$ go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config cfg-api.yaml ../admin/api.yaml
-$ go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen -config cfg-user.yaml ../common/api.yaml
+$ go run github.com/vulados/oapi-codegen/v2/cmd/oapi-codegen -config cfg-api.yaml ../admin/api.yaml
+$ go run github.com/vulados/oapi-codegen/v2/cmd/oapi-codegen -config cfg-user.yaml ../common/api.yaml
 ```
 
 This therefore means that we need multiple configuration files, such as `cfg-api.yaml`:
@@ -2016,7 +2016,7 @@ output-options:
   skip-prune: true
 import-mapping:
   # for a given file/URL that is $ref'd, point `oapi-codegen` to the Go package that this spec is generated into, to perform Go package imports
-  ../common/api.yaml: github.com/oapi-codegen/oapi-codegen/v2/examples/import-mapping/common
+  ../common/api.yaml: github.com/vulados/oapi-codegen/v2/examples/import-mapping/common
 ```
 
 This will then generate the following code:
@@ -2026,7 +2026,7 @@ package admin
 
 import (
 	// ...
-	externalRef0 "github.com/oapi-codegen/oapi-codegen/v2/examples/import-mapping/common"
+	externalRef0 "github.com/vulados/oapi-codegen/v2/examples/import-mapping/common"
 )
 
 // User defines model for User.
@@ -3155,7 +3155,7 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/pkg/securityprovider"
+	"github.com/vulados/oapi-codegen/v2/pkg/securityprovider"
 )
 
 func main() {
@@ -3177,7 +3177,7 @@ func main() {
 }
 ```
 
-Notice that we're using a pre-built provider from the [`pkg/securityprovider` package](https://pkg.go.dev/github.com/oapi-codegen/oapi-codegen/v2/pkg/securityprovider), which has some inbuilt support for other types of authentication, too.
+Notice that we're using a pre-built provider from the [`pkg/securityprovider` package](https://pkg.go.dev/github.com/vulados/oapi-codegen/v2/pkg/securityprovider), which has some inbuilt support for other types of authentication, too.
 
 ## Custom code generation
 
@@ -4136,7 +4136,7 @@ output-options:
   exclude-schemas: []
 ```
 
-Check [the docs](https://pkg.go.dev/github.com/oapi-codegen/oapi-codegen/v2/pkg/codegen#OutputOptions) for more details of usage.
+Check [the docs](https://pkg.go.dev/github.com/vulados/oapi-codegen/v2/pkg/codegen#OutputOptions) for more details of usage.
 
 ### Should I commit the generated code?
 

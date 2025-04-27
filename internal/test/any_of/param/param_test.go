@@ -3,9 +3,9 @@ package param_test
 import (
 	"testing"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/internal/test/any_of/param"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/vulados/oapi-codegen/v2/internal/test/any_of/param"
 )
 
 func TestAnyOfParameter(t *testing.T) {

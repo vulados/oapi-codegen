@@ -22,11 +22,11 @@ import (
 	"github.com/labstack/echo/v4"
 	echoMiddleware "github.com/labstack/echo/v4/middleware"
 	middleware "github.com/oapi-codegen/echo-middleware"
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/echo/api"
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/echo/api/models"
 	"github.com/oapi-codegen/testutil"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
+	"github.com/vulados/oapi-codegen/v2/examples/petstore-expanded/echo/api"
+	"github.com/vulados/oapi-codegen/v2/examples/petstore-expanded/echo/api/models"
 )
 
 func TestPetStore(t *testing.T) {

@@ -7,9 +7,9 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/gin/api"
 	"github.com/oapi-codegen/testutil"
 	"github.com/stretchr/testify/assert"
+	"github.com/vulados/oapi-codegen/v2/examples/petstore-expanded/gin/api"
 )
 
 func doGet(t *testing.T, handler http.Handler, url string) *httptest.ResponseRecorder {

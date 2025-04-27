@@ -1,13 +1,13 @@
-module github.com/oapi-codegen/oapi-codegen/v2/examples/petstore-expanded/stdhttp
+module github.com/vulados/oapi-codegen/v2/examples/petstore-expanded/stdhttp
 
 go 1.22
 
-replace github.com/oapi-codegen/oapi-codegen/v2 => ../../../
+replace github.com/vulados/oapi-codegen/v2 => ../../../
 
 require (
 	github.com/getkin/kin-openapi v0.128.0
 	github.com/oapi-codegen/nethttp-middleware v1.0.2
-	github.com/oapi-codegen/oapi-codegen/v2 v2.0.0-00010101000000-000000000000
+	github.com/vulados/oapi-codegen/v2 v2.0.0-00010101000000-000000000000
 	github.com/oapi-codegen/runtime v1.1.0
 	github.com/oapi-codegen/testutil v1.0.0
 	github.com/stretchr/testify v1.10.0
