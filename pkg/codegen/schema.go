@@ -436,16 +436,61 @@ func GenerateGoSchema(sref *openapi3.SchemaRef, path []string) (Schema, error) {
 				}
 			}
 
+			for _, p := range schema.OneOf {
+				propertyPath := append(path, p.Ref)
+				pSchema, err := GenerateGoSchema(p, propertyPath)
+				if err != nil {
+					return Schema{}, fmt.Errorf("error generating Go schema for property '%s': %w", p.Ref, err)
+				}
+
+				if (pSchema.HasAdditionalProperties || len(pSchema.UnionElements) != 0) && pSchema.RefType == "" {
+					// If we have fields present which have additional properties or union values,
+					// but are not a pre-defined type, we need to define a type
+					// for them, which will be based on the field names we followed
+					// to get to the type.
+					typeName := PathToTypeName(propertyPath)
+
+					typeDef := TypeDefinition{
+						TypeName: typeName,
+						JsonName: strings.Join(propertyPath, "."),
+						Schema:   pSchema,
+					}
+					pSchema.AdditionalTypes = append(pSchema.AdditionalTypes, typeDef)
+
+					pSchema.RefType = typeName
+				}
+				description := ""
+				if p.Value != nil {
+					description = p.Value.Description
+				}
+
+				prop := Property{
+					JsonFieldName: p.Ref,
+					Schema:        pSchema,
+					Required:      false,
+					Description:   description,
+					Nullable:      p.Value.Nullable,
+					ReadOnly:      p.Value.ReadOnly,
+					WriteOnly:     p.Value.WriteOnly,
+					Extensions:    p.Value.Extensions,
+					Deprecated:    p.Value.Deprecated,
+				}
+				outSchema.Properties = append(outSchema.Properties, prop)
+				if len(pSchema.AdditionalTypes) > 0 {
+					outSchema.AdditionalTypes = append(outSchema.AdditionalTypes, pSchema.AdditionalTypes...)
+				}
+			}
+
 			if schema.AnyOf != nil {
 				if err := generateUnion(&outSchema, schema.AnyOf, schema.Discriminator, path); err != nil {
 					return Schema{}, fmt.Errorf("error generating type for anyOf: %w", err)
 				}
 			}
-			if schema.OneOf != nil {
-				if err := generateUnion(&outSchema, schema.OneOf, schema.Discriminator, path); err != nil {
-					return Schema{}, fmt.Errorf("error generating type for oneOf: %w", err)
-				}
-			}
+			//if schema.OneOf != nil {
+			//	if err := generateUnion(&outSchema, schema.OneOf, schema.Discriminator, path); err != nil {
+			//		return Schema{}, fmt.Errorf("error generating type for oneOf: %w", err)
+			//	}
+			//}
 
 			outSchema.GoType = GenStructFromSchema(outSchema)
 		}
